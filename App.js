@@ -1,23 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation';
+import HomeScreen from './HomeScreen';
+import MeetScreen from './MeetScreen';
 
-export default class App extends React.Component {
-	render() {
-		return (
-			<View style={styles.container}>
-				<Text>Open up App.js to start working on your app!</Text>
-				<Text>Changes you make will automatically reload.</Text>
-				<Text> Hi Ke! </Text>
-			</View>
-		);
-	}
-}
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
+const App = createBottomTabNavigator({
+	Home: { screen: HomeScreen },
+	Profile: { screen: MeetScreen },
 });
+
+export default App;
