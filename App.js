@@ -4,6 +4,9 @@ import { createBottomTabNavigator } from 'react-navigation';
 import HomeScreen from './HomeScreen';
 import MeetScreen from './MeetScreen';
 import * as firebase from 'firebase';
+import { Ionicons } from '@expo/vector-icons'; // Version can be specified in package.json
+
+// import Icon from 'meetup-web-components/lib/media/Icon';
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -19,7 +22,26 @@ const firebaseConfig = {
 const App = createBottomTabNavigator({
 	Home: { screen: HomeScreen },
 	Profile: { screen: MeetScreen },
-});
+},
+{
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = `ios-contacts`;
+        } else if (routeName === 'Profile') {
+          iconName = `ios-pulse`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Ionicons name={iconName} size={25} color={tintColor} />;
+      },
+	}),
+}
+);
 
 export default App;
+
 
